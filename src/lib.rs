@@ -10,6 +10,17 @@ pub struct Config {
 }
 
 impl Config {
+    /// Creates a new Config object, by parsing the provided command line arguments
+    /// and by reading the environment variables.
+    /// 
+    /// 
+    /// # Errors
+    /// 
+    /// * Returns `Didn't get a query string` if the command line arguments iterator
+    /// only have one or less elements.
+    /// * Returns `Didn't get a file path` if the command line arguments iterator
+    /// only have two or less elements.
+    /// 
     pub fn build(mut args: impl Iterator<Item = String>) -> Result<Config, &'static str> {
         // Ignore name of the program
         args.next();
